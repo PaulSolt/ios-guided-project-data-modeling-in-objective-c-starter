@@ -21,6 +21,7 @@
     
     LSIFirstResponder *bob = [[LSIFirstResponder alloc] init];
     
+    // all properties/variables default to nil/null or 0
     
     bob.name = @"Bob";
     
@@ -32,6 +33,7 @@
     NSLog(@"%@", bob);
 
     [name setString:@"Bobby"];
+    
     NSLog(@"%@", bob);
     
     NSMutableString *name2 = [NSMutableString stringWithFormat:@"Sue"];

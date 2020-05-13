@@ -18,7 +18,9 @@
     return self;
 }
 
-
+- (void)setName:(NSString *)name {
+    _name = [name copy];  // NSMutableString -> NSString
+}
 
 // description = CustomStringConvertible (Swift)
 // var description { }
