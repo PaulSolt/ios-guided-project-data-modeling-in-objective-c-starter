@@ -28,8 +28,36 @@
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
     
+    // extract data from dictionary using keys
+//    dictionary[@"PAUL"];
+//    [dictionary objectForKey:@"KEY"]; // returns a value or nil
+    NSDictionary *properties = dictionary[@"properties"];
+    NSDictionary *geometry = dictionary[@"geometry"];
+    NSArray *coordinates = geometry[@"coordinates"];
     
-    return nil;
+    NSNumber *magnitude = properties[@"mag"];
+    NSString *place = properties[@"place"];
+    NSNumber *timeNumber = properties[@"time"];
+    
+    // Longitude is first in array
+    NSNumber *longitude; // can crash if we access without checking size
+    NSNumber *latitude;
+
+    if (coordinates.count >= 2) {
+        longitude = coordinates[0];
+        latitude = coordinates[1];
+    }
+    
+    // failable init (return nil -> failed to set it up)
+    if (!magnitude || !place || !timeNumber || !longitude || !latitude) {
+        return nil;
+    }
+    
+    // NSTimeInterval = time in seconds
+    double timeInMilliseconds = timeNumber.doubleValue;
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeInMilliseconds / 1000.0];
+    
+    return [self initWithMagnitude:magnitude.doubleValue place:place time:date latitude:latitude.doubleValue longitude:longitude.doubleValue];
 }
 
 
