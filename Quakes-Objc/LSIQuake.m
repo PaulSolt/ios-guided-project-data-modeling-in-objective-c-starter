@@ -10,7 +10,7 @@
 
 @implementation LSIQuake
 
-- (instancetype)initWithMagnitude:(double)magnitude
+- (instancetype)initWithMagnitude:(NSNumber *)magnitude
                             place:(NSString *)place
                              time:(NSDate *)time
                          latitude:(double)latitude
@@ -48,8 +48,13 @@
         latitude = coordinates[1];
     }
     
+    // nil mag is valid, just N/A (magnitude is optional)
+    if ([magnitude isKindOfClass:[NSNull class]]) { // is mag null?
+        magnitude = nil;
+    }
+    
     // failable init (return nil -> failed to set it up)
-    if (!magnitude || !place || !timeNumber || !longitude || !latitude) {
+    if (!place || !timeNumber || !longitude || !latitude) {
         return nil;
     }
     
@@ -57,7 +62,7 @@
     double timeInMilliseconds = timeNumber.doubleValue;
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeInMilliseconds / 1000.0];
     
-    return [self initWithMagnitude:magnitude.doubleValue place:place time:date latitude:latitude.doubleValue longitude:longitude.doubleValue];
+    return [self initWithMagnitude:magnitude place:place time:date latitude:latitude.doubleValue longitude:longitude.doubleValue];
 }
 
 

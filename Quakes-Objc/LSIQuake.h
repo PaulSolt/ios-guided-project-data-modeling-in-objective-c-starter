@@ -15,13 +15,13 @@ NS_ASSUME_NONNULL_BEGIN
 // Create the properties (types, attributes)
 // primitive or objects
 
-@property (nonatomic, readonly) double magnitude;
+@property (nonatomic, readonly, nullable) NSNumber *magnitude; // use object for optionality
 @property (nonatomic, readonly, copy) NSString *place;
 @property (nonatomic, readonly) NSDate *time;
 @property (nonatomic, readonly) double latitude;
 @property (nonatomic, readonly) double longitude;
 
-- (instancetype)initWithMagnitude:(double)magnitude
+- (instancetype)initWithMagnitude:(NSNumber *)magnitude
                             place:(NSString *)place
                              time:(NSDate *)time
                          latitude:(double)latitude
