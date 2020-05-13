@@ -7,6 +7,8 @@
 //
 
 #import "ViewController.h"
+#import "LSIFirstResponder.h"
+
 
 @interface ViewController ()
 
@@ -16,7 +18,27 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    LSIFirstResponder *bob = [[LSIFirstResponder alloc] init];
+    
+    
+    bob.name = @"Bob";
+    
+    NSLog(@"%@", bob);
+    
+    NSMutableString *name = [NSMutableString stringWithFormat:@"Bob"];
+    bob.name = name;
+
+    NSLog(@"%@", bob);
+
+    [name setString:@"Bobby"];
+    NSLog(@"%@", bob);
+
+    // Problem: NSMutableString can be passed to a
+    // NSString property/method and then data can
+    // be changed later at will (without the consent
+    // of the actual object) - Breaking Encapsulation
+
 }
 
 
