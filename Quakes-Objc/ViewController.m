@@ -33,6 +33,15 @@
 
     [name setString:@"Bobby"];
     NSLog(@"%@", bob);
+    
+    NSMutableString *name2 = [NSMutableString stringWithFormat:@"Sue"];
+
+    LSIFirstResponder *sue = [[LSIFirstResponder alloc] initWithName:name2];
+
+    NSLog(@"%@", sue);
+
+    [name2 setString:@"Suzanne"];
+    NSLog(@"%@", sue);
 
     // Problem: NSMutableString can be passed to a
     // NSString property/method and then data can

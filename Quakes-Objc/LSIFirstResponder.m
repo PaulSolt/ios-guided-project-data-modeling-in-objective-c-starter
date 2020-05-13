@@ -13,10 +13,12 @@
 - (instancetype)initWithName:(NSString *)name {
     self = [super init];
     if (self) {
-        _name = name; // sets instance variable
+        _name = [name copy]; // sets instance variable
     }
     return self;
 }
+
+
 
 // description = CustomStringConvertible (Swift)
 // var description { }
