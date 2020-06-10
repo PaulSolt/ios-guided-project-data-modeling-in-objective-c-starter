@@ -10,7 +10,7 @@
 
 @implementation LSIQuake
 
-- (instancetype)initWithMagnitude:(double)magnitude
+- (instancetype)initWithMagnitude:(NSNumber *)magnitude
                             place:(NSString *)place
                              time:(NSDate *)time
                          latitude:(double)latitude
@@ -61,12 +61,19 @@
         NSLog(@"Missing coordinates"); // TODO: do something???
     }
     
+    // Sometimes mag is null, so we need to handle it as an Optional
+    // double cannot be nil, use NSNumber (object) type to represent an optional double
+    if ([magnitudeNumber isKindOfClass:[NSNull class]]) {
+        // null value
+        magnitudeNumber = nil; // invalid maginitude (optional)
+    }
+    
     // required properties for valid object (not always a safe assumption)
-    if (magnitudeNumber && place && timeNumber && latitude && longitude) {
+    if (place && timeNumber && latitude && longitude) {
         
         NSDate *time = [[NSDate alloc] initWithTimeIntervalSince1970:timeNumber.longValue / 1000.0];
         
-        self = [self initWithMagnitude:magnitudeNumber.doubleValue place:place time:time latitude:latitude.doubleValue longitude:longitude.doubleValue];
+        self = [self initWithMagnitude:magnitudeNumber place:place time:time latitude:latitude.doubleValue longitude:longitude.doubleValue];
         return self;
     } else { // missing a property that we consider required, so we'll throw out data
         return nil;

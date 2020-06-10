@@ -15,7 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 // More property attributes
 // assign*, copy
 
-@property (nonatomic) double magnitude;
+@property (nonatomic) NSNumber *magnitude; // double cannot be nil (not optional)
+//@property (nonatomic) double magnitude; // double cannot be nil (not optional)
 @property (nonatomic, copy) NSString *place;
 @property (nonatomic) NSDate *time;
 @property (nonatomic) double latitude;
@@ -27,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 // If you ever write C, Objective-C, C++ or any language that has 2 code files per Class
 // Always put your comments in the header file (.h)
-- (instancetype)initWithMagnitude:(double)magnitude place:(NSString *)place time:(NSDate *)time latitude:(double)latitude longitude:(double)longitude;
+- (instancetype)initWithMagnitude:(NSNumber *)magnitude place:(NSString *)place time:(NSDate *)time latitude:(double)latitude longitude:(double)longitude;
 
 // Use this method with NSJSONSerialization
 
