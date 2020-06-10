@@ -20,7 +20,7 @@
 
 @interface LSIFirstResponder () {
     // Option 1: Declare instance variables (not properties)
-    NSString *_firstName;
+//    NSString *_firstName;
 }
 
 @end
@@ -28,7 +28,15 @@
 
 @implementation LSIFirstResponder
 
+// Placement 1: Sythesize statements
+//@synthesize firstName = _firstName;
+//@synthesize lastName = _lastName;
+
 // override the default Getter
+
+// Placement 2: Synthesize statements
+// this is asking the compiler to generate an instance variable using the format _propertyName
+@synthesize firstName = _firstName;
 - (NSString *)firstName {
     return _firstName;
 }
