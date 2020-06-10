@@ -48,7 +48,10 @@
     XCTAssertEqualWithAccuracy(-116.7776667, quake.longitude, 0.0001);
 }
 
-- (void)testQuakeWithNullMagParsesAsOptional {
+// I like to use descriptive names when writing tests, so I know exactly what is
+// expected when it passes, or what might be broken when a test fails.
+
+- (void)testQuakeWithNullMagParsesAsOptionalMagnitude {
     
     NSData *quakeData = loadFile(@"QuakeWithNullMag.json", [LSIQuakeTests class]);
     NSLog(@"NSData: %@", quakeData);
