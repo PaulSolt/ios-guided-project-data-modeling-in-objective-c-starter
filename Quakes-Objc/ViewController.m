@@ -16,7 +16,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+// Class method, call the method on the ClassName
+//    [NSJSONSerialization JSONObjectWithData:<#(nonnull NSData *)#> options:<#(NSJSONReadingOptions)#> error:<#(NSError *__autoreleasing  _Nullable * _Nullable)#>]
+
+    
+    // If it was an instance method, we need to create an object before we can use the method
+//    NSJSONSerialization *dontDoThis = [[NSJSONSerialization alloc] init];
+//    [dontDoThis JSONObjectWith...];
 }
 
 
